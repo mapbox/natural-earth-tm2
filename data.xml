@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
+
+<Parameters>
+  <Parameter name="center">0,20,4</Parameter>
+  <Parameter name="format">pbf</Parameter>
+  <Parameter name="json"><![CDATA[{"vector_layers":[{"id":"country_fill","description":"Polygons useful for shading the fill color of countries.","fields":{"type":"String","name":"String","color":"Number"}},{"id":"playas","description":"","fields":{"name":"String"}},{"id":"urban_areas","description":"","fields":{}},{"id":"water","description":"Ocean and lake polygons","fields":{}},{"id":"ice","description":"","fields":{}},{"id":"railroads","description":"","fields":{}},{"id":"roads","description":"Highway, major road, and ferry route lines","fields":{"ogc_fid":"Number","scalerank":"Number","featurecla":"String","type":"String","sov_a3":"String","note":"String","edited":"String","name":"String","namealt":"String","namealtt":"String","routeraw":"String","question":"Number","length_km":"Number","toll":"Number","ne_part":"String","label":"String","label2":"String","local":"String","localtype":"String","localalt":"String","labelrank":"Number","ignore":"Number","add":"Number","rwdb_rd_id":"Number","orig_fid":"Number","prefix":"String","uident":"Number","continent":"String","expressway":"Number","level":"String"}},{"id":"geographic_lines","description":"","fields":{"name":"String","featurecla":"String"}},{"id":"admin_1_lines","description":"State & province boundaries","fields":{"featurecla":"String"}},{"id":"admin_0_lines","description":"Country boundaries","fields":{"type":"String","class":"String"}},{"id":"country_labels","description":"","fields":{"ogc_fid":"Number","sr_sov_a3":"String","sr_adm0_a3":"String","sr_gu_a3":"String","sr_su_a3":"String","sr_subunit":"String","sr_brk_a3":"String","sr_br_name":"String","scalerank":"Number","featurecla":"String"}},{"id":"land_ocean_labels","description":"","fields":{"ogc_fid":"Number","scalerank":"Number","featurecla":"String"}},{"id":"places","description":"Points for labeling cities and towns","fields":{"name":"String","scalerank":"Number"}}]}]]></Parameter>
+  <Parameter name="maxzoom">7</Parameter>
+  <Parameter name="minzoom">0</Parameter>
+  <Parameter name="name"><![CDATA[Natural Earth]]></Parameter>
+</Parameters>
+
+
+<Layer name="country_fill"
+  buffer-size="8"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT geom, type, name, mapcolor7 AS color
+  FROM ne_110m_admin_0_countries
+  WHERE z(!scale_denominator!) <= 2 AND geom && !bbox!
+  UNION ALL
+  SELECT geom, type, name, mapcolor7 AS color
+  FROM ne_50m_admin_0_countries
+  WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
+  UNION ALL
+  SELECT geom, type, name, mapcolor7 AS color
+  FROM ne_10m_admin_0_countries
+  WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="playas"
+  buffer-size="8"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT geom, name
+  FROM ne_50m_playas
+  WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
+  UNION ALL
+  SELECT geom, name
+  FROM ne_10m_playas
+  WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="urban_areas"
+  buffer-size="8"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT geom
+  FROM ne_50m_urban_areas
+  WHERE z(!scale_denominator!) IN (3,4)
+  UNION ALL
+  SELECT geom
+  FROM ne_10m_urban_areas
+  WHERE geom && !bbox!
+    AND z(!scale_denominator!) >= 5
+    AND scalerank-1 <= z(!scale_denominator!)
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="water"
+  buffer-size="2"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[-- This layer combines oceans & lakes
+( -- 1:110,000,000 scale
+  SELECT geom FROM ne_110m_ocean
+  WHERE z(!scale_denominator!) <= 2 AND geom && !bbox!
+  UNION ALL
+  SELECT geom FROM ne_110m_lakes
+  WHERE z(!scale_denominator!) <= 2 AND geom && !bbox!
+  UNION ALL
+  -- 1:50,000,000 scale
+  SELECT geom FROM ne_50m_ocean
+  WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
+  UNION ALL
+  SELECT geom FROM ne_50m_lakes
+  WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
+    AND scalerank-1 <= z(!scale_denominator!)
+  UNION ALL
+  -- 1:10,000,000 scale
+  SELECT geom FROM ne_10m_ocean
+  WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+  UNION ALL
+  SELECT geom FROM ne_10m_lakes
+  WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+    AND scalerank-1 <= z(!scale_denominator!)
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="ice"
+  buffer-size="8"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( -- Glaciated areas
+  SELECT geom FROM ne_110m_glaciated_areas
+  WHERE z(!scale_denominator!) <= 2 AND geom && !bbox!
+  UNION ALL
+  SELECT geom FROM ne_50m_glaciated_areas
+  WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
+  UNION ALL
+  SELECT geom FROM ne_10m_glaciated_areas
+  WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+  UNION ALL
+  -- Antarctic ice shelves
+  -- No 110m included so 50m is used at z0-2 as well
+  SELECT geom FROM ne_50m_antarctic_ice_shelves_polys
+  WHERE z(!scale_denominator!) <= 4 AND geom && !bbox!
+  UNION ALL
+  SELECT geom FROM ne_10m_antarctic_ice_shelves_polys
+  WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="railroads"
+  buffer-size="0"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT geom
+  FROM ne_10m_railroads
+  WHERE geom && !bbox! AND CASE
+    WHEN z(!scale_denominator!) = 5 AND scalerank <= 5 THEN TRUE
+    WHEN z(!scale_denominator!) = 6 AND scalerank <= 7 THEN TRUE
+    WHEN z(!scale_denominator!) >= 7 THEN TRUE END
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="roads"
+  buffer-size="8"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT * FROM ne_10m_roads
+  WHERE geom && !bbox! AND CASE
+    WHEN z(!scale_denominator!) = 4 AND scalerank <= 3 THEN TRUE
+    WHEN z(!scale_denominator!) = 5 AND scalerank <= 5 THEN TRUE
+    WHEN z(!scale_denominator!) = 6 AND scalerank <= 7 THEN TRUE
+    WHEN z(!scale_denominator!) >= 7 THEN TRUE END
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="geographic_lines"
+  buffer-size="8"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[-- In order to draw sharper lines when styling, line geometries
+-- are snapped to the center of the pixel 
+( SELECT name, featurecla,
+    ST_SnapToGrid(geom,!pixel_width!/2,!pixel_height!/2,!pixel_width!,!pixel_height!) AS geom
+  FROM ne_110m_geographic_lines
+  WHERE z(!scale_denominator!) <= 2 AND geom && !bbox!
+  UNION ALL
+  SELECT name, featurecla,
+    ST_SnapToGrid(geom,!pixel_width!/2,!pixel_height!/2,!pixel_width!,!pixel_height!) AS geom
+  FROM ne_50m_geographic_lines
+  WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
+  UNION ALL
+  SELECT name, featurecla,
+    ST_SnapToGrid(geom,!pixel_width!/2,!pixel_height!/2,!pixel_width!,!pixel_height!) AS geom
+  FROM ne_10m_geographic_lines
+  WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="admin_1_lines"
+  buffer-size="0"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT geom, featurecla
+  FROM ne_50m_admin_1_states_provinces_lines
+  WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
+  UNION ALL
+  SELECT geom, featurecla
+  FROM ne_10m_admin_1_states_provinces_lines_shp
+  WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="admin_0_lines"
+  buffer-size="0"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT geom, 'Land' AS type, CASE
+    WHEN featurecla ILIKE 'line of control%' THEN 'control'
+    WHEN featurecla ILIKE 'disputed%' THEN 'dispute'
+    WHEN featurecla ILIKE 'lease%' THEN 'lease'
+    WHEN featurecla ILIKE 'overlay%' THEN 'overlay'
+    ELSE 'boundary' END AS class
+  FROM ne_110m_admin_0_boundary_lines_land
+  WHERE z(!scale_denominator!) <= 2 AND geom && !bbox!
+  UNION ALL
+  SELECT geom, 'Land' AS type, CASE
+    WHEN featurecla ILIKE 'line of control%' THEN 'control'
+    WHEN featurecla ILIKE 'disputed%' THEN 'dispute'
+    WHEN featurecla ILIKE 'lease%' THEN 'lease'
+    WHEN featurecla ILIKE 'overlay%' THEN 'overlay'
+    ELSE 'boundary' END AS class
+  FROM ne_50m_admin_0_boundary_lines_land
+  WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
+  UNION ALL
+  SELECT geom, type, CASE
+    WHEN featurecla ILIKE 'line of control%' THEN 'control'
+    WHEN featurecla ILIKE 'disputed%' THEN 'dispute'
+    WHEN featurecla ILIKE 'lease%' THEN 'lease'
+    WHEN featurecla ILIKE 'overlay%' THEN 'overlay'
+    ELSE 'boundary' END AS class
+  FROM ne_10m_admin_0_boundary_lines_land
+  WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="country_labels"
+  buffer-size="128"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT *
+  FROM ne_10m_admin_0_label_points
+  WHERE geom && !bbox!
+    AND z(!scale_denominator!) >= 3
+    AND scalerank <= 3
+  ORDER BY scalerank
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="land_ocean_labels"
+  buffer-size="128"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT *
+  FROM ne_10m_land_ocean_label_points
+  WHERE geom && !bbox! AND CASE
+    WHEN z(!scale_denominator!) >= 3 AND scalerank <= 1 THEN TRUE
+    WHEN z(!scale_denominator!) >= 4 AND scalerank <= 2 THEN TRUE
+    WHEN z(!scale_denominator!) >= 5 AND scalerank <= 3 THEN TRUE
+    WHEN z(!scale_denominator!) >= 6 AND scalerank <= 4 THEN TRUE
+    WHEN z(!scale_denominator!) >= 7 THEN TRUE
+    END
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="places"
+  buffer-size="128"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="dbname"><![CDATA[natural_earth]]></Parameter>
+       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_table"><![CDATA[]]></Parameter>
+       <Parameter name="host"><![CDATA[localhost]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="max_size"><![CDATA[512]]></Parameter>
+       <Parameter name="port"><![CDATA[5432]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT geom, name, scalerank
+  FROM ne_10m_populated_places
+  WHERE geom && !bbox! AND CASE
+  	WHEN z(!scale_denominator!) >= 3 AND scalerank = 0 THEN TRUE
+  	WHEN z(!scale_denominator!) >= 4 AND scalerank <= 2 THEN TRUE
+  	WHEN z(!scale_denominator!) >= 5 AND scalerank <= 4 THEN TRUE
+  	WHEN z(!scale_denominator!) >= 6 AND scalerank <= 6 THEN TRUE
+  	WHEN z(!scale_denominator!) >= 7 THEN TRUE
+    END
+  -- Ordering the query properly is important. Points that are selected
+  -- first are given priority for labeling.
+  ORDER BY scalerank ASC, pop_max DESC
+) AS data]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="user"><![CDATA[postgres]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>
