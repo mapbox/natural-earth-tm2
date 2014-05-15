@@ -15,15 +15,15 @@ psql="psql -q -h $dbhost -p $dbport -U $dbuser"
 
 tmp="${TEMP:-/tmp}"
 
-echo "Downloading Natural Earth Data..."
-wget --trust-server-names -qNP "$tmp" http://kelso.it/x/nesqlite
-unzip -qjun "$tmp/natural_earth_vector.sqlite.zip"
-
 echo "Setting up PostGIS database..."
 #$psql -c "drop database $dbname;" || true  # useful to uncomment during dev
 $psql -c "create database $dbname"
 $psql -d $dbname -c "create extension postgis;"
-$psql -d $dbname -f ./functions.sql
+$psql -d $dbname -f "$(dirname $0)/functions.sql"
+
+echo "Downloading Natural Earth Data (213MB)..."
+wget --trust-server-names -qNP "$tmp" http://kelso.it/x/nesqlite
+unzip -qjun -d "$tmp" "$tmp/natural_earth_vector.sqlite.zip"
 
 echo "Importing Natural Earth to PostGIS..."
 PGCLIENTENCODING=LATIN1 ogr2ogr \
