@@ -1,7 +1,7 @@
 Natural Earth for TM2
 =====================
 
-This project provides a usable [TM2][] vector tiles source using data from [Natural Earth][], and also serves as an example/template for creating your own complex vector tiles source.
+This project serves as an example for creating a relatively complex vector tile source in [TM2][] along with a visual style for that source. All data is from [Natural Earth][].
 
 [TM2]: http://github.com/mapbox/tm2
 [Natural Earth]: http://naturalearthdata.com
@@ -9,21 +9,23 @@ This project provides a usable [TM2][] vector tiles source using data from [Natu
 Requirements
 ------------
 
-This project is developed primarily on Ubuntu Linux and it should also work on Mac OS X. Windows is not yet supported.
-
 - PostgreSQL
 - PostGIS >= 2.0
 - GDAL (for `ogr2ogr`)
-- basic Unix utils: bash, wget, unzip
+- basic Unix tools: bash, wget, unzip
+
+This project has been tested on Ubuntu Linux and it should also work on Mac OS X. Windows is not yet supported.
 
 Setup
 -----
 
 ```sh
-git clone <url>
-cd natural-earth.tm2source
-./setub_db.sh
+git clone git@github.com:mapbox/natural-earth-tm2.git
+cd natural-earth-tm2
+./util/setup_db.sh
 ```
+
+__TODO__: configurable database connection. For now you'll need `postgres@localhost:5432` to connect, without a password.
 
 Scales
 ------
