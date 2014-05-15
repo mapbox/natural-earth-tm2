@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" background-color="#ffffff" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
+
+<Parameters>
+  <Parameter name="attribution"><![CDATA[Map data © OpenStreetMap contributors]]></Parameter>
+  <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
+  <Parameter name="center">-75.3662109375,39.9434364619742,6</Parameter>
+  <Parameter name="format">png8:m=h:c=128</Parameter>
+  <Parameter name="maxzoom">22</Parameter>
+  <Parameter name="minzoom">0</Parameter>
+  <Parameter name="name"><![CDATA[Natural Earth]]></Parameter>
+  <Parameter name="source"><![CDATA[mapbox:///aj.5g3orq99]]></Parameter>
+</Parameters>
+
+
+<Layer name="country_fill"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+      </Layer>
+
+<Style name="playas" filter-mode="first">
+  <Rule>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <PolygonSymbolizer fill="#ffffcc" />
+    <LineSymbolizer stroke-width="0.5" stroke-dasharray="4, 2" stroke="#66aaff" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <PolygonSymbolizer fill="#ffffcc" />
+    <LineSymbolizer stroke="#66aaff" stroke-dasharray="5, 3" />
+  </Rule>
+</Style>
+<Layer name="playas"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>playas</StyleName>  </Layer>
+
+<Style name="urban_areas" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer fill="#fff0b0" />
+  </Rule>
+</Style>
+<Layer name="urban_areas"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>urban_areas</StyleName>  </Layer>
+
+<Style name="water" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer fill="#aaccee" />
+    <LineSymbolizer stroke="#66aaff" />
+  </Rule>
+</Style>
+<Layer name="water"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>water</StyleName>  </Layer>
+
+<Style name="ice" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer fill="#ffffff" />
+  </Rule>
+</Style>
+<Layer name="ice"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>ice</StyleName>  </Layer>
+
+<Layer name="railroads"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+      </Layer>
+
+<Style name="roads-road" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <Filter>([featurecla] = 'Road') and ([type] = 'Secondary Highway')</Filter>
+    <LineSymbolizer stroke-width="1.4" stroke="#ddaaaa" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
+    <Filter>([featurecla] = 'Road') and ([type] = 'Secondary Highway')</Filter>
+    <LineSymbolizer stroke-width="1.2" stroke="#ddaaaa" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([featurecla] = 'Road') and ([type] = 'Secondary Highway')</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#ddaaaa" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([featurecla] = 'Road') and ([type] = 'Secondary Highway')</Filter>
+    <LineSymbolizer stroke="#ddaaaa" stroke-width="0.75" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <Filter>([featurecla] = 'Road') and ([type] = 'Major Highway')</Filter>
+    <LineSymbolizer stroke-width="1.8" stroke="#ddaaaa" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([featurecla] = 'Road') and ([type] = 'Major Highway')</Filter>
+    <LineSymbolizer stroke-width="1.5" stroke="#ddaaaa" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([featurecla] = 'Road') and ([type] = 'Major Highway')</Filter>
+    <LineSymbolizer stroke-width="1.2" stroke="#ddaaaa" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000000</MinScaleDenominator>
+    <Filter>([featurecla] = 'Road') and ([type] = 'Major Highway')</Filter>
+    <LineSymbolizer stroke="#ddaaaa" stroke-width="0.75" />
+  </Rule>
+  <Rule>
+    <Filter>([featurecla] = 'Road')</Filter>
+    <LineSymbolizer stroke="#ddaaaa" stroke-width="0.75" />
+  </Rule>
+</Style>
+<Style name="roads-ferry" filter-mode="first">
+  <Rule>
+    <Filter>([featurecla] = 'Ferry')</Filter>
+    <LineSymbolizer stroke="#66bbee" stroke-dasharray="5, 2" />
+  </Rule>
+</Style>
+<Layer name="roads"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>roads-ferry</StyleName>
+    <StyleName>roads-road</StyleName>  </Layer>
+
+<Style name="geographic_lines" filter-mode="first">
+  <Rule>
+    <LineSymbolizer stroke="#ffffff" stroke-dasharray="6, 2" />
+  </Rule>
+</Style>
+<Layer name="geographic_lines"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>geographic_lines</StyleName>  </Layer>
+
+<Layer name="admin_1_lines"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+      </Layer>
+
+<Style name="admin_0_lines" filter-mode="first">
+  <Rule>
+    <Filter>([class] = 'control')</Filter>
+    <LineSymbolizer stroke-dasharray="2, 2" stroke-width="1" stroke="#664444" />
+  </Rule>
+  <Rule>
+    <Filter>([class] = 'dispute')</Filter>
+    <LineSymbolizer stroke-dasharray="5, 3" stroke-width="1" stroke="#664444" />
+  </Rule>
+  <Rule>
+    <LineSymbolizer stroke-width="1" stroke="#664444" />
+  </Rule>
+</Style>
+<Layer name="admin_0_lines"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>admin_0_lines</StyleName>  </Layer>
+
+<Layer name="country_labels"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+      </Layer>
+
+<Layer name="land_ocean_labels"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+      </Layer>
+
+<Style name="places" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <Filter>([scalerank] &lt;= 1)</Filter>
+    <TextSymbolizer size="20" face-name="PT Sans Bold" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 1)</Filter>
+    <TextSymbolizer size="18" face-name="PT Sans Bold" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 1)</Filter>
+    <TextSymbolizer size="16" face-name="PT Sans Bold" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 1)</Filter>
+    <TextSymbolizer size="15" face-name="PT Sans Bold" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <Filter>([scalerank] &lt;= 2)</Filter>
+    <TextSymbolizer size="19" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 2)</Filter>
+    <TextSymbolizer size="17" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 2)</Filter>
+    <TextSymbolizer size="15" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 2)</Filter>
+    <TextSymbolizer size="14" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <Filter>([scalerank] &lt;= 3)</Filter>
+    <TextSymbolizer size="18" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 3)</Filter>
+    <TextSymbolizer size="16" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 3)</Filter>
+    <TextSymbolizer size="14" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 3)</Filter>
+    <TextSymbolizer size="13" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <Filter>([scalerank] &lt;= 4)</Filter>
+    <TextSymbolizer size="17" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 4)</Filter>
+    <TextSymbolizer size="14" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 4)</Filter>
+    <TextSymbolizer size="13" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 4)</Filter>
+    <TextSymbolizer size="12" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <Filter>([scalerank] &lt;= 5)</Filter>
+    <TextSymbolizer size="16" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 5)</Filter>
+    <TextSymbolizer size="14" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 5)</Filter>
+    <TextSymbolizer size="13" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 5)</Filter>
+    <TextSymbolizer size="12" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <Filter>([scalerank] &lt;= 7)</Filter>
+    <TextSymbolizer size="15" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 7)</Filter>
+    <TextSymbolizer size="13" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 7)</Filter>
+    <TextSymbolizer size="12" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 7)</Filter>
+    <TextSymbolizer size="11" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>6500000</MaxScaleDenominator>
+    <Filter>([scalerank] &lt;= 8)</Filter>
+    <TextSymbolizer size="14" face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>6500000</MinScaleDenominator>
+    <Filter>([scalerank] &lt;= 8)</Filter>
+    <TextSymbolizer face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <TextSymbolizer face-name="PT Sans Regular" fill="#004444" halo-radius="2" halo-fill="rgba(255, 255, 255, 0.19999999999999996)" halo-rasterizer="fast" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Layer name="places"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>places</StyleName>  </Layer>
+
+</Map>

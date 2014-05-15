@@ -1,0 +1,27 @@
+_prefs: 
+  baselayer: ''
+  print: false
+  saveCenter: true
+_properties: {}
+attribution: Map data © OpenStreetMap contributors
+bounds: 
+  - -180
+  - -85.0511
+  - 180
+  - 85.0511
+center: 
+  - -75.3662109375
+  - 39.9434364619742
+  - 6
+description: ''
+format: "png8:m=h:c=128"
+interactivity_layer: ''
+layers: null
+maxzoom: 22
+minzoom: 0
+name: Natural Earth
+source: "mapbox:///aj.5g3orq99"
+styles: 
+  - style.mss
+  - labels.mss
+template: ''
