@@ -222,47 +222,27 @@ Layer:
       max_size: 512
       port: 5432
       table: |-
-        ( SELECT * FROM ne_10m_roads
-          WHERE geom && !bbox! AND CASE
-            WHEN z(!scale_denominator!) = 4 AND scalerank <= 3 THEN TRUE
-            WHEN z(!scale_denominator!) = 5 AND scalerank <= 5 THEN TRUE
-            WHEN z(!scale_denominator!) = 6 AND scalerank <= 7 THEN TRUE
-            WHEN z(!scale_denominator!) >= 7 THEN TRUE END
+        ( SELECT geom FROM ne_10m_roads
+          WHERE geom && !bbox!
+            AND continent <> 'North America'
+            AND CASE
+              WHEN z(!scale_denominator!) = 4 AND scalerank <= 3 THEN TRUE
+              WHEN z(!scale_denominator!) = 5 AND scalerank <= 5 THEN TRUE
+              WHEN z(!scale_denominator!) = 6 AND scalerank <= 7 THEN TRUE
+              WHEN z(!scale_denominator!) >= 7 THEN TRUE END
+          UNION ALL
+          SELECT geom FROM ne_10m_roads_north_america
+          WHERE geom && !bbox!
+            AND CASE
+              WHEN z(!scale_denominator!) = 4 AND scalerank <= 3 THEN TRUE
+              WHEN z(!scale_denominator!) = 5 AND scalerank <= 5 THEN TRUE
+              WHEN z(!scale_denominator!) = 6 AND scalerank <= 7 THEN TRUE
+              WHEN z(!scale_denominator!) >= 7 THEN TRUE END
         ) AS data
       type: postgis
       user: postgres
     description: Highway, major road, and ferry route lines
-    fields: 
-      add: Number
-      continent: String
-      edited: String
-      expressway: Number
-      featurecla: String
-      ignore: Number
-      label: String
-      label2: String
-      labelrank: Number
-      length_km: Number
-      level: String
-      local: String
-      localalt: String
-      localtype: String
-      name: String
-      namealt: String
-      namealtt: String
-      ne_part: String
-      note: String
-      ogc_fid: Number
-      orig_fid: Number
-      prefix: String
-      question: Number
-      routeraw: String
-      rwdb_rd_id: Number
-      scalerank: Number
-      sov_a3: String
-      toll: Number
-      type: String
-      uident: Number
+    fields: {}
     properties: 
       "buffer-size": 8
     srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
