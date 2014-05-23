@@ -356,34 +356,57 @@ Layer:
     Datasource: 
       dbname: natural_earth
       extent: -20037508.34,-20037508.34,20037508.34,20037508.34
-      geometry_field: ''
+      geometry_field: geom_point
       geometry_table: ''
       host: localhost
       key_field: ''
       max_size: 512
       port: 5432
       table: |-
-        ( SELECT *
-          FROM ne_10m_admin_0_label_points
+        ( SELECT geom_point,
+            name, iso_a2, iso_a3, abbrev, scalerank, labelrank
+          FROM ne_10m_admin_0_countries
           WHERE geom && !bbox!
             AND z(!scale_denominator!) >= 3
-            AND scalerank <= 3
-          ORDER BY scalerank
+          ORDER BY scalerank, pop_est DESC
         ) AS data
       type: postgis
       user: postgres
     description: ''
     fields: 
-      featurecla: String
-      ogc_fid: Number
+      abbrev: String
+      iso_a2: String
+      iso_a3: String
+      labelrank: Number
+      name: String
       scalerank: Number
-      sr_adm0_a3: String
-      sr_br_name: String
-      sr_brk_a3: String
-      sr_gu_a3: String
-      sr_sov_a3: String
-      sr_su_a3: String
-      sr_subunit: String
+    properties: 
+      "buffer-size": 128
+    srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
+  - id: state_labels
+    Datasource: 
+      dbname: natural_earth
+      extent: -20037508.34,-20037508.34,20037508.34,20037508.34
+      geometry_field: geom_point
+      geometry_table: ''
+      host: localhost
+      key_field: ''
+      max_size: 512
+      port: 5432
+      table: |-
+        ( SELECT geom_point, name
+          FROM ne_50m_admin_1_states_provinces_shp
+          WHERE geom && !bbox! AND z(!scale_denominator!) IN (3,4)
+          UNION ALL
+          SELECT ST_PointOnSurface(geom) AS geom1, name
+          FROM ne_10m_admin_1_states_provinces_shp
+          WHERE geom && !bbox! AND z(!scale_denominator!) >= 5
+        ) AS data
+      type: postgis
+      user: postgres
+    description: ''
+    fields: 
+      name: String
     properties: 
       "buffer-size": 128
     srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
