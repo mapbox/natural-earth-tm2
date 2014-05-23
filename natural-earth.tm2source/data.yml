@@ -257,20 +257,15 @@ Layer:
       max_size: 512
       port: 5432
       table: |-
-        -- In order to draw sharper lines when styling, line geometries
-        -- are snapped to the center of the pixel 
-        ( SELECT name, featurecla,
-            ST_SnapToGrid(geom,!pixel_width!/2,!pixel_height!/2,!pixel_width!,!pixel_height!) AS geom
+        ( SELECT name, featurecla, geom
           FROM ne_110m_geographic_lines
           WHERE z(!scale_denominator!) <= 2 AND geom && !bbox!
           UNION ALL
-          SELECT name, featurecla,
-            ST_SnapToGrid(geom,!pixel_width!/2,!pixel_height!/2,!pixel_width!,!pixel_height!) AS geom
+          SELECT name, featurecla, geom
           FROM ne_50m_geographic_lines
           WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
           UNION ALL
-          SELECT name, featurecla,
-            ST_SnapToGrid(geom,!pixel_width!/2,!pixel_height!/2,!pixel_width!,!pixel_height!) AS geom
+          SELECT name, featurecla, geom
           FROM ne_10m_geographic_lines
           WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
         ) AS data
