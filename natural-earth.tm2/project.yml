@@ -20,7 +20,8 @@ layers: null
 maxzoom: 22
 minzoom: 0
 name: Natural Earth
-source: "mapbox:///aj.5g3orq99"
+scale: 1
+source: "mapbox:///aj.e37dspde"
 styles: 
   - style.mss
   - labels.mss
