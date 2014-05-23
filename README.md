@@ -61,14 +61,16 @@ To simplify styling we sometimes combine multiple tables into a single layer que
 
 In this project you'll also see multiple tables combined with zoom level conditionals in order to handle switching between Natural Earth's 3 data scales at different zoom levels.
 
-### On-the-fly geometry transforms
+### Labeling polygons
 
-Using PostGIS we're able to make geometry transformations at query time. For example you can buffer polygons, simplify lines, or derive centroid points.
+Deriving points from polygons is especially important for vector tiles. Labeling polygons doesn't work like it did in TileMill 1 - with vector tiles a polygon might be split across many vector tiles, so if you try to label it directly you'll end up with lots of duplicate labels. Using PostGIS's `ST_PointOnSurface` function to derive a point layer for labeling a separate polygon layer is one way around this.
 
-Deriving points from polygons is especially important for vector tiles. Labeling polygons doesn't work like it did in TileMill 1 - with vector tiles a polygon might be split across many vector tiles, so if you try to label it directly you'll end up with lots of duplicate labels. Here we use PostGIS's `ST_PointOnSurface` function to derive a point layer for labeling a separate polygon layer.
+You can do this on-the-fly in a TM2 SQL query, eg:
 
 ```sql
 ( SELECT ST_PointOnSurface(geom) AS geom, name
   FROM ne_10m_lakes
 ) AS data
 ```
+
+However for faster exports we've done this as a post-processing step to our import script. It works by adding a new geometry column, `geom_point`, to polygon layers we'll want to label.
