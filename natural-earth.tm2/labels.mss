@@ -1,3 +1,15 @@
+#country_labels {
+  text-name: [name];
+  text-face-name: "PT Sans Caption Regular";
+  text-transform: uppercase;
+  text-character-spacing: 1;
+  text-placement: point;
+  text-fill: #602;
+  text-halo-fill: fadeout(#fff,90%);
+  text-halo-radius: 2;
+  text-halo-rasterizer: fast;
+}
+
 #places {
   text-name: [name];
   text-face-name: "PT Sans Regular";
