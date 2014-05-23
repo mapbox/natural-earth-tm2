@@ -151,27 +151,38 @@ Layer:
       port: 5432
       table: |-
         ( -- Glaciated areas
-          SELECT geom FROM ne_110m_glaciated_areas
-          WHERE z(!scale_denominator!) <= 2 AND geom && !bbox!
+          SELECT geom, 'glacier' AS type
+          FROM ne_110m_glaciated_areas
+          WHERE z(!scale_denominator!) <= 2
+            AND geom && !bbox!
           UNION ALL
-          SELECT geom FROM ne_50m_glaciated_areas
-          WHERE z(!scale_denominator!) IN (3,4) AND geom && !bbox!
+          SELECT geom, 'glacier' AS type
+          FROM ne_50m_glaciated_areas
+          WHERE z(!scale_denominator!) IN (3,4)
+            AND geom && !bbox!
           UNION ALL
-          SELECT geom FROM ne_10m_glaciated_areas
-          WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+          SELECT geom, 'glacier' AS type
+          FROM ne_10m_glaciated_areas
+          WHERE z(!scale_denominator!) >= 5
+            AND geom && !bbox!
           UNION ALL
           -- Antarctic ice shelves
-          -- No 110m included so 50m is used at z0-2 as well
-          SELECT geom FROM ne_50m_antarctic_ice_shelves_polys
-          WHERE z(!scale_denominator!) <= 4 AND geom && !bbox!
+          -- No 110m version is available
+          SELECT geom, 'ice_shelf' AS type
+          FROM ne_50m_antarctic_ice_shelves_polys
+          WHERE z(!scale_denominator!) IN (3,4)
+            AND geom && !bbox!
           UNION ALL
-          SELECT geom FROM ne_10m_antarctic_ice_shelves_polys
-          WHERE z(!scale_denominator!) >= 5 AND geom && !bbox!
+          SELECT geom, 'ice_shelf' AS type
+          FROM ne_10m_antarctic_ice_shelves_polys
+          WHERE z(!scale_denominator!) >= 5
+            AND geom && !bbox!
         ) AS data
       type: postgis
       user: postgres
     description: ''
-    fields: {}
+    fields: 
+      type: "One of: 'glacier', 'ice_shelf'"
     properties: 
       "buffer-size": 8
     srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
