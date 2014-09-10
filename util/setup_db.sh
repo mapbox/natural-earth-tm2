@@ -22,7 +22,7 @@ $psql -d $dbname -c "create extension postgis;"
 $psql -d $dbname -f "$(dirname $0)/functions.sql"
 
 echo "Downloading Natural Earth Data (213MB)..."
-wget --trust-server-names -qNP "$tmp" http://kelso.it/x/nesqlite
+wget --trust-server-names -qNP "$tmp" http://naciscdn.org/naturalearth/packages/natural_earth_vector.sqlite.zip
 unzip -qjun -d "$tmp" "$tmp/natural_earth_vector.sqlite.zip"
 
 echo "Importing Natural Earth to PostGIS..."
