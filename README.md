@@ -70,6 +70,7 @@ You can do this on-the-fly in a TM2 SQL query, eg:
 ```sql
 ( SELECT ST_PointOnSurface(geom) AS geom, name
   FROM ne_10m_lakes
+  WHERE geom && !bbox!
 ) AS data
 ```
 
