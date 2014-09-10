@@ -59,7 +59,7 @@ tables=('ne_110m_admin_0_countries'
 for table in ${tables[@]}; do
     $psql --single-transaction --dbname=$dbname --quiet --command="
         ALTER TABLE $table ADD COLUMN geom_point geometry(point);
-        UPDATE $table SET geom_point = ST_PointOnSurface(geom);
+        UPDATE $table SET geom_point = ST_PointOnSurface(ST_MakeValid(geom));
         CREATE INDEX ${table}_geom_point ON $table USING gist (geom_point);"
 done
 
